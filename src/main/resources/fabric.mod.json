@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Corner Portal Linking",
-  "description": "An easy way to manager nether portals.",
+  "description": "Use glazed terracotta to help linking Nether portals.",
   "authors": [
     "Starbidou (Starbender)"
   ],
@@ -29,7 +29,6 @@
 
   "depends": {
     "fabricloader": ">=0.14.9",
-    "fabric-api": ">=0.58.6",
     "minecraft": "~1.19",
     "java": ">=17"
   },
