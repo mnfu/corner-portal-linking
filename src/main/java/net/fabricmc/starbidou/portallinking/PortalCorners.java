@@ -1,7 +1,7 @@
 package net.fabricmc.starbidou.portallinking;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
 
 public class PortalCorners {
     public BlockState lower1;
@@ -65,7 +65,7 @@ public class PortalCorners {
         }
         else
         {
-            return Registry.BLOCK.getId(state.getBlock()).toString();
+            return Registries.BLOCK.getId(state.getBlock()).toString();
         }
     }
 }

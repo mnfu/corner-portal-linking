@@ -16,8 +16,8 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
 import net.minecraft.world.border.WorldBorder;
-import net.minecraft.world.dimension.AreaHelper;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.dimension.NetherPortal;
 import net.minecraft.world.entity.EntityLike;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -101,7 +101,7 @@ public abstract class EntityMixin implements Nameable,
                 axis = Direction.Axis.X; // Arbitrary choice between X and Z
                 vec3d = new Vec3d(0.5, 0.0, 0.0); // Bottom-Center of the portal
             }
-            return AreaHelper.getNetherTeleportTarget(destination, rect, axis, vec3d, entity.getDimensions(entity.getPose()), entity.getVelocity(), entity.getYaw(), entity.getPitch());
+            return NetherPortal.getNetherTeleportTarget(destination, rect, axis, vec3d, entity, entity.getVelocity(), entity.getYaw(), entity.getPitch());
         }).orElse(null);
     }
 }
