@@ -49,8 +49,8 @@ public abstract class EntityMixin implements Nameable,
         boolean toTheNether = destination.getRegistryKey() == World.NETHER;
         boolean toTheEnd = destination.getRegistryKey() == World.END;
 
-        boolean fromTheNether = entity.world.getRegistryKey() == World.NETHER;
-        boolean fromTheEnd = entity.world.getRegistryKey() == World.END;
+        boolean fromTheNether = entity.getWorld().getRegistryKey() == World.NETHER;
+        boolean fromTheEnd = entity.getWorld().getRegistryKey() == World.END;
 
         // Handling fixed teleportations from and to the end
         if ((fromTheEnd && toTheOverworld) || toTheEnd) {
@@ -68,7 +68,7 @@ public abstract class EntityMixin implements Nameable,
 
         // Nether related
         WorldBorder worldBorder = destination.getWorldBorder();
-        double d = DimensionType.getCoordinateScaleFactor(entity.world.getDimension(), destination.getDimension());
+        double d = DimensionType.getCoordinateScaleFactor(entity.getWorld().getDimension(), destination.getDimension());
         BlockPos blockPos2 = worldBorder.clamp(entity.getX() * d, entity.getY(), entity.getZ() * d);
 
         Optional<BlockLocating.Rectangle> portalRect;
@@ -89,11 +89,11 @@ public abstract class EntityMixin implements Nameable,
         return portalRect.map(rect -> {
             Vec3d vec3d;
             Direction.Axis axis;
-            BlockState blockState = entity.world.getBlockState(entity.lastNetherPortalPosition);
+            BlockState blockState = entity.getWorld().getBlockState(entity.lastNetherPortalPosition);
             if (blockState.contains(Properties.HORIZONTAL_AXIS))
             {
                 axis = blockState.get(Properties.HORIZONTAL_AXIS); // X or Z only
-                var rectangle = BlockLocating.getLargestRectangle(entity.lastNetherPortalPosition, axis, 21, Direction.Axis.Y, 21, pos -> entity.world.getBlockState((BlockPos)pos) == blockState);
+                var rectangle = BlockLocating.getLargestRectangle(entity.lastNetherPortalPosition, axis, 21, Direction.Axis.Y, 21, pos -> entity.getWorld().getBlockState((BlockPos)pos) == blockState);
                 vec3d = entity.positionInPortal(axis, rectangle);
             }
             else
