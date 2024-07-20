@@ -26,7 +26,6 @@ public class PortalHelper {
 
     /**
      * Returns a Rectangle describing the destination nether portal.
-     * @param entity
      * @param destWorld
      * @param destPos
      * @param destIsNether
@@ -34,7 +33,7 @@ public class PortalHelper {
      * @param corners
      * @return
      */
-    public static Optional<BlockLocating.Rectangle> modifiedGetPortalRect(Entity entity, ServerWorld destWorld, BlockPos destPos, boolean destIsNether, WorldBorder worldBorder, PortalCorners corners)
+    public static Optional<BlockLocating.Rectangle> modifiedGetPortalRect(ServerWorld destWorld, BlockPos destPos, boolean destIsNether, WorldBorder worldBorder, PortalCorners corners)
     {
         Optional<PointOfInterest> pointOfInterest = findDestPortal(destWorld, destPos, destIsNether, worldBorder, corners);
         return pointOfInterest.map(poi -> {
@@ -99,13 +98,7 @@ public class PortalHelper {
         return pointOfInterests.stream().sorted(comparator);
     }
 
-    public static PortalCorners getLastNetherPortalCornersVector(Entity entity)
-    {
-        return null;
-        // return getCornersVectorAt(entity.getWorld(), entity.lastNetherPortalPosition);
-    }
-
-    private static PortalCorners getCornersVectorAt(World world, BlockPos position)
+    public static PortalCorners getCornersVectorAt(World world, BlockPos position)
     {
         var blockState = world.getBlockState(position);
         var axis = blockState.get(Properties.HORIZONTAL_AXIS); // X or Z only
