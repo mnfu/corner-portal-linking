@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 public class PortalLinking implements ModInitializer {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger("starbidous_portal_linking");
-	public static final TagKey<Block> LINKING_BLOCKS = TagKey.of(RegistryKeys.BLOCK, new Identifier("starbidous_portal_linking", "portal_linking"));
+	public static final TagKey<Block> LINKING_BLOCKS = TagKey.of(RegistryKeys.BLOCK, Identifier.of("starbidous_portal_linking", "portal_linking"));
 
 	@Override
 	public void onInitialize() {

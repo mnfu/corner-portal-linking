@@ -101,7 +101,8 @@ public class PortalHelper {
 
     public static PortalCorners getLastNetherPortalCornersVector(Entity entity)
     {
-        return getCornersVectorAt(entity.getWorld(), entity.lastNetherPortalPosition);
+        return null;
+        // return getCornersVectorAt(entity.getWorld(), entity.lastNetherPortalPosition);
     }
 
     private static PortalCorners getCornersVectorAt(World world, BlockPos position)

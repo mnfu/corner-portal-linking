@@ -32,7 +32,7 @@ public abstract class EntityMixin implements Nameable,
         EntityLike,
         CommandOutput {
 
-    @Inject(method = "getTeleportTarget", at = @At("HEAD"), cancellable = true, locals = LocalCapture.CAPTURE_FAILEXCEPTION)
+    // @Inject(method = "getTeleportTarget", at = @At("HEAD"), cancellable = true, locals = LocalCapture.CAPTURE_FAILEXCEPTION)
     private void inject(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> cir)
     {
         Entity entity = ((Entity)(Object)this);
@@ -58,7 +58,8 @@ public abstract class EntityMixin implements Nameable,
                     ServerWorld.END_SPAWN_POS
                     : destination.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, destination.getSpawnPos());
 
-            return new TeleportTarget(new Vec3d((double)blockPos.getX() + 0.5, blockPos.getY(), (double)blockPos.getZ() + 0.5), entity.getVelocity(), entity.getYaw(), entity.getPitch());
+            return null;
+            // return new TeleportTarget(new Vec3d((double)blockPos.getX() + 0.5, blockPos.getY(), (double)blockPos.getZ() + 0.5), entity.getVelocity(), entity.getYaw(), entity.getPitch());
         }
 
         // Only supported situations left are nether related
@@ -83,10 +84,11 @@ public abstract class EntityMixin implements Nameable,
         else
         {
             // Vanilla
-            portalRect = entity.getPortalRect(destination, blockPos2, toTheNether, worldBorder);
+            // portalRect = entity.getPortalRect(destination, blockPos2, toTheNether, worldBorder);
         }
 
-        return portalRect.map(rect -> {
+        return null;
+        /*return portalRect.map(rect -> {
             Vec3d vec3d;
             Direction.Axis axis;
             BlockState blockState = entity.getWorld().getBlockState(entity.lastNetherPortalPosition);
@@ -102,6 +104,6 @@ public abstract class EntityMixin implements Nameable,
                 vec3d = new Vec3d(0.5, 0.0, 0.0); // Bottom-Center of the portal
             }
             return NetherPortal.getNetherTeleportTarget(destination, rect, axis, vec3d, entity, entity.getVelocity(), entity.getYaw(), entity.getPitch());
-        }).orElse(null);
+        }).orElse(null);*/
     }
 }
